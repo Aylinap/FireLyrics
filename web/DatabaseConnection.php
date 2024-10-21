@@ -12,7 +12,6 @@ class Database {
     private $pdo;
 
     private function __construct() {
-        // Establece la conexión utilizando los datos de config.php
         $this->pdo = new PDO(
             "mysql:host=" . DB_HOST .";port=" . DB_PORT . ";dbname=" . DB_NAME,
             DB_USER,
