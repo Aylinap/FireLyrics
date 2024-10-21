@@ -25,7 +25,7 @@ if (!empty($_SESSION['sesionIniciada'])) {
 
 function redirigir()
 {
-    header('Location: verUsuario.php');
+    header('Location: Index.php');
     exit();
 }
 
