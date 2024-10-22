@@ -20,14 +20,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Rankings</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="Logout.php">Top Canciones</a></li>
-                            <li><a class="dropdown-item" href="Logout.php">Top Artistas</a></li>
-                        </ul>
-
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#">Buscar</a>
                     </li>
@@ -40,8 +32,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <?php if ($_SESSION['rol'] == 0) { ?>
-                                <li><a class="dropdown-item" href="#">Administrar Usuarios</a></li>
-                                <li><a class="dropdown-item" href="#">Administrar Letras</a></li>
+                                <li><a class="dropdown-item" href="Administrador.php">Página de Administrador</a></li>
                                 <li><hr class="dropdown-divider"></li>
                             <?php } ?>
                             <li><a class="dropdown-item" href="#">Perfil</a></li>

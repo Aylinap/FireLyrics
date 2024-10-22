@@ -79,6 +79,14 @@ class Usuario
         return $stmt->execute();
     }
 
+    /* Obtiene todos los usuarios */
+    public static function getAllUser(){
+        $db = Database::getConnection();
+        $stmt = $db->prepare("SELECT * FROM usuario");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     /*Obtiene un usuario por su Username */
     public static function getByUserName($username) {
         $db = Database::getConnection();

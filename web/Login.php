@@ -2,6 +2,7 @@
 require_once 'modelo/Usuario.php';
 
 session_start();
+
 if (!empty($_SESSION['sesionIniciada'])) {
     redirigir();
 } else {
