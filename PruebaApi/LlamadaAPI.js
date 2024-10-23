@@ -19,7 +19,8 @@ function dibujarCanciones(canciones) {
     canciones.forEach(element => {
         const cancion = document.createElement('div');
         cancion.id = 'cancion_' + count;
-        cancion.setAttribute('data-id', element.id);
+        cancion.setAttribute('data-idCancion', element.id);
+        cancion.setAttribute('data-idArtista', element['artist-credit'][0]['artist'].id);
 
         const titulo = document.createElement('h5');
         titulo.innerHTML = element.title;
@@ -59,9 +60,9 @@ function guardarCancion(id) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id: idMusicBrainz}),
+        body: JSON.stringify({id:idMusicBrainz})
     })
-        .then(response =>{response.json()})
-        .then(data => {console.log(data)})
-        .catch(error => {console.log(error)})
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
 }
