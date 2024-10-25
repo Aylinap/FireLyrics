@@ -16,17 +16,6 @@ function API_buscarNombre(texto) {
         .catch((error) => console.log(error));
 }
 
-// function API_buscarID(id) {
-//     const url = "https://musicbrainz.org/ws/2/recording/?query=recording:" + id + "?inc=artist-credits&fmt=json";
-//     fetch(url)
-//         .then((response) => response.json())
-//         .then((data) => {
-//             console.log(data.recordings);
-//             mostrarCanciones(data.recordings);
-//         })
-//         .catch((error) => console.log(error));
-// }
-
 function mostrarCanciones(canciones) {
     const listaCanciones = document.getElementById('listaCanciones');
 
@@ -60,5 +49,3 @@ function mostrarCanciones(canciones) {
         listaCanciones.appendChild(cardClone);
     });
 }
-
-// ab237e7b-ce54-4cbe-9b9c-0e1882c30866
