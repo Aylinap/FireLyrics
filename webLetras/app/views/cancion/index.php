@@ -31,24 +31,25 @@
                 <div class="col d-none" id="card">
                     <div class="card w-100">
                         <div class="row g-0">
-                            <div class="col-2">
-                                <img src="../img/Laboa.jpg" class="card-fluid w-100">
+                            <div class="col-1">
+                                <img src="../img/Laboa.jpg" class="img-fluid h-100">
                             </div>
-                            <div class="col-10">
+                            <div class="col-11">
                                 <div class="card-header">
                                     <div class="row align-middle">
                                         <div class="col-10">
-                                            <span class="card-title fs-1" id="tituloCancion">Card title</span>
+                                            <span class="card-title fs-3" id="tituloCancion">Card title</span>
                                             <span class="card-text" id="fechaCancion">Año de Lanzamiento</span>
                                         </div>
                                         <div class="col-2 d-flex align-items-center">
-                                            <a href="#" class="btn btn-primary">Añadir Cancion</a>
+                                            <a href="#" class="btn btn-primary" id="botonAnadir">Añadir Cancion</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <p class="card-text fs-4" id="artistaCancion">Artista</p>
-                                    <p class="card-text" id="idCancion">ID</p>
+                                    <span class="card-text fs-6" id="artistaCancion">Artista</span>
+                                    <span class="card-text d-none" id="idmbArtista">IDMBartista</span>
+                                    <p class="card-text d-none" id="idmbCancion">IDMBCancion</p>
                                 </div>
                             </div>
                         </div>

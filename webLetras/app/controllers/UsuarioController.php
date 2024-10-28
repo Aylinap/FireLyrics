@@ -74,9 +74,6 @@ class UsuarioController extends Controller{
         include '../app/views/user/register.php';
     }
 
-    /**
-     * Editar una serie
-     */
     public function update() {
         // Solo el administrador puede cambiar otros usuarios
         if ($_SESSION['user']['role'] === 'admin') {
@@ -169,7 +166,6 @@ class UsuarioController extends Controller{
     public function index() {
         $usuariosBD = $this->usuarioModel->getAllUsers();
         $usuarios = [];
-        //Hay que mostrar la puntuación media de cada serie
         foreach ($usuariosBD as $usuarioBD) {
             $usuario = new Usuario($usuarioBD['id'], $usuarioBD['name'], $usuarioBD['username'], $usuarioBD['email'], $usuarioBD['role']);           
             $usuarios[] = $usuario;

@@ -6,6 +6,6 @@
     <title>User</title>
 </head>
 <body>
-    <a href="http://topseries/index.php?controller=cancion&action=index">Hola</a>
+    <a href="http://webletras/index.php?controller=cancion&action=index">Hola</a>
 </body>
 </html>

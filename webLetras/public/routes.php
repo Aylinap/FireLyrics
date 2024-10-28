@@ -11,7 +11,7 @@ class Routing {
     public static function checkSession() {
         if (!isset($_SESSION['user'])) {
             // Redirigir a la página de inicio de sesión si la sesión no está configurada
-            header('Location: /index.php?controller=cancion&action=index');
+            header('');
             exit();
         }
     }
@@ -29,7 +29,7 @@ class Routing {
 
         if (self::$controller !== 'usuario' || self::$action !== 'login') {
             // Verificar la sesión del usuario
-            self::checkSession();
+            //self::checkSession();
         }
 
         self::$controller = ucfirst(self::$controller) . 'Controller';
