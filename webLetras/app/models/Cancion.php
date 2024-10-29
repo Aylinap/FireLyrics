@@ -8,14 +8,14 @@ class Cancion
     private $titulo;
     private $id_artista;
     private $anoEstreno;
-    private $id_musicbrainz;
-    public function __construct($id=0, $titulo = "",  $id_artista = "",  $anoEstreno = "",  $id_musicbrainz = "")
+    private $IDMB;
+    public function __construct($id=0, $titulo = "",  $id_artista = "",  $anoEstreno = "",  $IDMB = "")
     {
         $this->id=$id;
         $this->titulo = $titulo;
         $this->id_artista = $id_artista;
         $this->anoEstreno = $anoEstreno;
-        $this->id_musicbrainz = $id_musicbrainz;
+        $this->IDMB = $IDMB;
     }
     public function getId()
     {
@@ -37,9 +37,9 @@ class Cancion
         return $this->anoEstreno;
     }
 
-    public function getIdMusicbrainz()
+    public function getIDMB()
     {
-        return $this->id_musicbrainz;
+        return $this->IDMB;
     }
 
     public function setId($id): void
@@ -62,29 +62,29 @@ class Cancion
         $this->anoEstreno = $anoEstreno;
     }
 
-    public function setIdMusicbrainz($id_musicbrainz): void
+    public function setIDMB($IDMB): void
     {
-        $this->id_musicbrainz = $id_musicbrainz;
+        $this->IDMB = $IDMB;
     }
 
     public function existeCancion()
     {
-        $stmt = Database::getConnection()->prepare("SELECT * FROM cancion WHERE id_musicbrainz = :IDMB");
-        $stmt->execute(['IDMB' => $this->id_musicbrainz]);
+        $stmt = Database::getConnection()->prepare("SELECT * FROM cancion WHERE IDMB = :IDMB");
+        $stmt->execute(['IDMB' => $this->IDMB]);
         $cancionDB = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!empty($cancionDB)) return true;
         return false;
     }
 
-    public function add()
+    public function addCancion()
     {
-        $stmt = Database::getConnection()->prepare("INSERT INTO cancion(titulo, id_artista, anoEstreno, id_musicbrainz) VALUES (:titulo, :id_artista, :fecha, :idmb)");
+        $stmt = Database::getConnection()->prepare("INSERT IGNORE INTO cancion(titulo, id_artista, anoEstreno, IDMB) VALUES (:titulo, :id_artista, :fecha, :idmb)");
         $stmt->execute([
             'titulo' => $this->titulo,
             'id_artista' => $this->id_artista,
             'fecha' => $this->anoEstreno,
-            'idmb' => $this->id_musicbrainz
+            'idmb' => $this->IDMB
         ]);
         $respuesta = $stmt->fetch(PDO::FETCH_ASSOC);
     }

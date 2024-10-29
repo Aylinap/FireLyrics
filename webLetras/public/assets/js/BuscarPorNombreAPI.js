@@ -71,7 +71,6 @@ window.onload = function () {
             });
             listaCanciones.appendChild(cardClone);
             count++;
-
         });
     }
 }

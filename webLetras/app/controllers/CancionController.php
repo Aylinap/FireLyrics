@@ -8,9 +8,11 @@ require_once '../app/models/Artista.php';
 class CancionController extends Controller
 {
     private $cancionModel;
+    private $artistaModel;
     public function __construct()
     {
         $this->cancionModel = new Cancion();
+        $this->artistaModel = new Artista();
     }
 
     public function index()
@@ -20,28 +22,29 @@ class CancionController extends Controller
 
     public function add()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = json_decode(file_get_contents('php://input'), true);
-            $titulo = $data['titulo'];
-            $artista = $data['artista'];
-            $id_artista = $data['idmbArtista'];
-            $anoEstreno = $data['fecha'];
-            $id_musicbrainz = $data['idmbCancion'];
+        $data = json_decode(file_get_contents('php://input'), true);
+        $titulo = $data['titulo'];
+        $idmbCancion = $data['idmbCancion'];
+        $artista = $data['artista'];
+        $idmbArtista = $data['idmbArtista'];
+        $fecha = $data['fecha'];
 
-            $artista = new Artista(nombre: $artista, id_musicbrainz: $id_artista);
+        $this->artistaModel->setNombre($artista);
+        $this->artistaModel->setIDMB($idmbArtista);
 
-            if (!$artista->existeArtista()) {
-                $artista -> add();
-            } 
+        $this->artistaModel->addArtista();
 
-            $artista -> getArtistabyIDMB();
-            
-            $cancion = new Cancion(titulo: $titulo, id_artista: $artista->getId(), anoEstreno: $anoEstreno, id_musicbrainz: $id_musicbrainz);
+        $this->cancionModel->setTitulo($titulo);
+        $this->cancionModel->setIdArtista($this->artistaModel->getId());
+        $this->cancionModel->setAnoEstreno($fecha);
+        $this->cancionModel->setIDMB($idmbCancion);
 
-            if (!$cancion->existeCancion()) {
-                $cancion -> add();
-                echo json_encode(['success' => true, 'message' => 'Cancion anadida']);
-            } else echo json_encode(['success' => false, 'message' => 'Ya existe la canción']);
-        }
+        $this->cancionModel->addCancion();
+        
+        echo json_encode([
+            'id' => $this->artistaModel->getId(),
+            'artista' => $this->artistaModel->getNombre(),
+            'idmbArtista' => $this->artistaModel->getIDMB(),
+        ]);
     }
 }

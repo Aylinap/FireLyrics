@@ -6,12 +6,12 @@ class Artista
 {
     private $id;
     private $nombre;
-    private $id_musicbrainz;
-    public function __construct($id = 0, $nombre = '', $id_musicbrainz = '')
+    private $IDMB;
+    public function __construct($id = 0, $nombre = '', $IDMB = '')
     {
         $this->id = $id;
         $this->nombre = $nombre;
-        $this->id_musicbrainz = $id_musicbrainz;
+        $this->IDMB = $IDMB;
     }
 
     public function getId()
@@ -19,13 +19,13 @@ class Artista
         return $this->id;
     }
 
-    public function getTitulo()
+    public function getNombre()
     {
         return $this->nombre;
     }
-    public function getIdMusicbrainz()
+    public function getIDMB()
     {
-        return $this->id_musicbrainz;
+        return $this->IDMB;
     }
 
     public function setId($id): void
@@ -38,40 +38,30 @@ class Artista
         $this->nombre = $nombre;
     }
 
-    public function setIdMusicbrainz($id_musicbrainz): void
+    public function setIDMB($IDMB): void
     {
-        $this->id_musicbrainz = $id_musicbrainz;
+        $this->IDMB = $IDMB;
     }
-
-    public function getArtistabyIDMB()
+    public function addArtista()
     {
-        $stmt = Database::getConnection()->prepare("SELECT * FROM artista WHERE id_musicbrainz = :IDMB");
-        $stmt->execute(['IDMB' => $this->id_musicbrainz]);
-        $artistaDB = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($artistaDB){
-            $this->id = $artistaDB['id'];
-            $this->nombre = $artistaDB['nombre'];
-            $this->id_musicbrainz = $artistaDB['id_musicbrainz'];
-            return true;
-        } 
-        return false;
-    }
 
-    public function existeArtista()
-    {
-        $stmt = Database::getConnection()->prepare("SELECT * FROM artista WHERE id_musicbrainz = :IDMB");
-        $stmt->execute(['IDMB' => $this->id_musicbrainz]);
-        $artistaDB = $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $stmt_insert = Database::getConnection()->prepare("INSERT INTO artista(IDMB,nombre) VALUES (:IDMB, :nombre)");
+            $stmt_insert->execute([
+                'IDMB' => $this->IDMB,
+                'nombre' => $this->nombre
+            ]);
+            $this->setId(Database::getConnection()->lastInsertId()) ;
+        } catch (PDOException $e) {
+            $stmt_select = Database::getConnection()->prepare("SELECT * FROM artista WHERE IDMB = :IDMB");
+            $stmt_select->execute([
+                'IDMB' => $this->IDMB
+            ]);
 
-        return $artistaDB !== false;
-    }
-
-    public function add()
-    {
-        $stmt = Database::getConnection()->prepare("INSERT INTO artista(nombre, id_musicbrainz) VALUES (:nombre, :IDMB)");
-        $stmt->execute([
-            'nombre' => $this->nombre,
-            'IDMB' => $this->id_musicbrainz
-        ]);
+            $respuesta = $stmt_select->fetch(PDO::FETCH_ASSOC);
+            $this->setId($respuesta['id']);
+            $this->setNombre($respuesta['nombre']);
+            $this->setIDMB($respuesta['IDMB']);
+        }
     }
 }

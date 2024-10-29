@@ -31,17 +31,17 @@
                 <div class="col d-none" id="card">
                     <div class="card w-100">
                         <div class="row g-0">
-                            <div class="col-1">
+                            <div class="col-xl-1 col-sm-3 col-none">
                                 <img src="../img/Laboa.jpg" class="img-fluid h-100">
                             </div>
-                            <div class="col-11">
+                            <div class="col-xl-11 col-sm-9 col-12">
                                 <div class="card-header">
                                     <div class="row align-middle">
-                                        <div class="col-10">
+                                        <div class="col-8">
                                             <span class="card-title fs-3" id="tituloCancion">Card title</span>
                                             <span class="card-text" id="fechaCancion">Año de Lanzamiento</span>
                                         </div>
-                                        <div class="col-2 d-flex align-items-center">
+                                        <div class="col-4 d-flex align-items-center">
                                             <a href="#" class="btn btn-primary" id="botonAnadir">Añadir Cancion</a>
                                         </div>
                                     </div>
