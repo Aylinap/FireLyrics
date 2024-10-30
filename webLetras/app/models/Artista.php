@@ -64,4 +64,9 @@ class Artista
             $this->setIDMB($respuesta['IDMB']);
         }
     }
+
+    public function getAllArtistaBDD(){
+        $stmt = Database::getConnection()->query("SELECT nombre FROM artista");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

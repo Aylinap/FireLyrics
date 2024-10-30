@@ -17,7 +17,12 @@ class CancionController extends Controller
 
     public function index()
     {
+        $arrayCancion = $this->cancionModel->getAllCancionesBDD_ultimas();
+        $arrayArtista = $this->artistaModel->getAllArtistaBDD();
         include '../app/views/cancion/index.php';
+    }
+    public function buscar(){
+        include '../app/views/cancion/buscar.php';
     }
 
     public function add()

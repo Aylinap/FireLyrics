@@ -9,13 +9,15 @@ class Cancion
     private $id_artista;
     private $anoEstreno;
     private $IDMB;
-    public function __construct($id=0, $titulo = "",  $id_artista = "",  $anoEstreno = "",  $IDMB = "")
+    private $letra;
+    public function __construct($id = 0, $titulo = "",  $id_artista = "",  $anoEstreno = "",  $IDMB = "", $letra="")
     {
-        $this->id=$id;
+        $this->id = $id;
         $this->titulo = $titulo;
         $this->id_artista = $id_artista;
         $this->anoEstreno = $anoEstreno;
         $this->IDMB = $IDMB;
+        $this->letra = $letra;
     }
     public function getId()
     {
@@ -42,6 +44,10 @@ class Cancion
         return $this->IDMB;
     }
 
+    public function isLetra(){
+        return $this->letra;
+    }
+
     public function setId($id): void
     {
         $this->id = $id;
@@ -66,6 +72,10 @@ class Cancion
     {
         $this->IDMB = $IDMB;
     }
+    public function setLetra($letra): void
+    {
+        $this->letra = $letra;
+    }
 
     public function existeCancion()
     {
@@ -87,5 +97,17 @@ class Cancion
             'idmb' => $this->IDMB
         ]);
         $respuesta = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllCancionesBDD()
+    {
+        $stmt = Database::getConnection()->query("SELECT cancion.titulo, cancion.anoEstreno, cancion.letra, artista.nombre FROM cancion INNER JOIN artista ON cancion.id_artista = artista.id");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllCancionesBDD_ultimas()
+    {
+        $stmt = Database::getConnection()->query("SELECT cancion.titulo, cancion.anoEstreno, cancion.letra, artista.nombre FROM cancion INNER JOIN artista ON cancion.id_artista = artista.id ORDER BY cancion.id DESC LIMIT 5"); //Cambiar numero para que devuelva más
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

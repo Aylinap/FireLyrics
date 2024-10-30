@@ -1,70 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include '../app/views/general/header.php';
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-        crossorigin="anonymous" />
-</head>
-
-<body>
-    <h1>Canciones:</h1>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-9">
-                <span class="fs-3">Añadir canción</span>
-            </div>
-            <div class="col-3 d-flex p-2">
-                <input class="form-control m-1" type="search" placeholder="" id="textoBuscar" />
-                <button class="btn btn-outline-primary m-1" type="submit" id="botonBuscar">Buscar</button>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="row row-cols-1 row-cols-md-1 g-2" id="listaCanciones">
-                <div class="col d-none" id="card">
-                    <div class="card w-100">
-                        <div class="row g-0">
-                            <div class="col-xl-1 col-sm-3 col-none">
-                                <img src="../img/Laboa.jpg" class="img-fluid h-100">
-                            </div>
-                            <div class="col-xl-11 col-sm-9 col-12">
-                                <div class="card-header">
-                                    <div class="row align-middle">
-                                        <div class="col-8">
-                                            <span class="card-title fs-3" id="tituloCancion">Card title</span>
-                                            <span class="card-text" id="fechaCancion">Año de Lanzamiento</span>
+<main class="container-fluid p-0">
+    <div class="p-5 bg-danger">
+        <h1 class="ms-2 text-light">ULTIMAS CANCIONES</h1>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <?php
+                $count = 0;
+                foreach ($arrayCancion as $element) { ?>
+                    <div class="carousel-item <?php if ($count == 0) echo 'active'; ?>">
+                        <?php $count++; ?>
+                        <div class="card m-3 border-0">
+                            <div class="row g-0">
+                                <div class="col-xl-1 col-lg-3 col-none bg-black d-flex align-items-center">
+                                    <img src="/img/logofondonegro.png" alt="Firelyrics" class="w-100">
+                                </div>
+                                <div class="col-xl-11 col-lg-9 col-12">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <div>
+                                            <span class="card-title fs-3"><?php echo $element['titulo'] ?></span>
+                                            <span class="card-text"> <?php echo $element['anoEstreno'] ?></span>
                                         </div>
-                                        <div class="col-4 d-flex align-items-center">
-                                            <a href="#" class="btn btn-primary" id="botonAnadir">Añadir Cancion</a>
+                                        <div>
+                                            <button class="btn btn-secondary <?php if ($element['letra']) echo 'd-none'; ?>">Añadir Letra</button>
+                                            <button class="btn btn-danger <?php if (!$element['letra']) echo 'd-none'; ?>">Ver Letra</button>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    <span class="card-text fs-6" id="artistaCancion">Artista</span>
-                                    <span class="card-text d-none" id="idmbArtista">IDMBartista</span>
-                                    <p class="card-text d-none" id="idmbCancion">IDMBCancion</p>
+                                    <div class="card-body d-flex justify-content-between">
+                                        <h5 class="card-title"> <?php echo $element['nombre'] ?></h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
-
-    <!-- SCRIPT -->
-    <script src="../assets/js/BuscarPorNombreAPI.js"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+    <div class="p-5 bg-light">
+        <h1 class="p-3 text-dark">ARTISTAS RECOMENDADOS</h1>
+            <div class="row row-cols-1 row-cols-md-4 g-3">
+                <?php foreach ($arrayArtista as $element) { ?>
+                    <div class="col d-flex justify-content-center">
+                        <div class="card bg-danger border-1 d-flex align-items-center p-3" style="width: 18rem;">
+                            <img src="/img/logofondonegro.png" alt="Firelyrics" class="rounded w-100">
+                            <div class="card-body d-flex flex-column justify-content-center w-100">
+                                <p class="card-text fs-2 text-light"><?php echo $element['nombre'] ?></p>
+                                <button class="btn btn-outline-light">Ir a Artista ></button>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    <div class="p-5 bg-danger">
+        <h1 class="ms-2 text-light">ULTIMAS CANCIONES</h1>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <?php
+                $count = 0;
+                foreach ($arrayCancion as $element) { ?>
+                    <div class="carousel-item <?php if ($count == 0) echo 'active'; ?>">
+                        <?php $count++; ?>
+                        <div class="card m-3 border-0">
+                            <div class="row g-0">
+                                <div class="col-xl-1 col-lg-3 col-none bg-black d-flex align-items-center">
+                                    <img src="/img/logofondonegro.png" alt="Firelyrics" class="w-100">
+                                </div>
+                                <div class="col-xl-11 col-lg-9 col-12">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <div>
+                                            <span class="card-title fs-3"><?php echo $element['titulo'] ?></span>
+                                            <span class="card-text"> <?php echo $element['anoEstreno'] ?></span>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-secondary <?php if ($element['letra']) echo 'd-none'; ?>">Añadir Letra</button>
+                                            <button class="btn btn-danger <?php if (!$element['letra']) echo 'd-none'; ?>">Ver Letra</button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body d-flex justify-content-between">
+                                        <h5 class="card-title"> <?php echo $element['nombre'] ?></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</main>
+<?php require_once '../app/views/general/footer.php'; ?>
