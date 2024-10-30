@@ -3,9 +3,9 @@
 // Configuración de la base de datos
 define('DB_HOST', 'localhost'); // Dirección del servidor de la base de datos
 define('DB_PORT', '3310'); // Puerto 
-define('DB_NAME', 'webletras'); // Nombre de la base de datos
-define('DB_USER', 'admin'); // Nombre de usuario
-define('DB_PASS', '[pyrQLM)4q6eyGdz'); // Contraseña
+define('DB_NAME', 'firelyrics'); // Nombre de la base de datos
+define('DB_USER', 'root'); // Nombre de usuario
+define('DB_PASS', 'sanm1919'); // Contraseña
 
 class Database {
     private static $instance = null;

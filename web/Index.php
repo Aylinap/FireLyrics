@@ -9,4 +9,7 @@ if (empty($_SESSION['user'])) {
 
 $usuario = Usuario::getByUserName($_SESSION['user']);
 
-include 'vista/vista_Index.php';
+
+
+include_once 'vista/vista_Index.php';
+include_once 'vista/vista_Footer.php';

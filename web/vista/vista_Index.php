@@ -1,55 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include_once 'vista/vista_header.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Ver Usuario</title>
-</head>
+?>
 
-<body>
-    <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">WEBLETRAS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Buscar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Quienes somos</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <?php echo $_SESSION['user'] ?>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <?php if ($_SESSION['rol'] == 0) { ?>
-                                <li><a class="dropdown-item" href="Administrador.php">Página de Administrador</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                            <?php } ?>
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="Logout.php">Cerrar Sesion</a></li>
-                        </ul>
-
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </nav>
+<!-- aqui podria hacer la section del grid con js -->
+<section class="grid_container_principal w-80 " id="grid_principal">
 
 
+</section>
+<!-- ahora viene la tabla con la informacion de las letras de canciones -->
+<!-- esta tabla tiene que ser con js llamada pasandole los parametros -->
+<section class="container_letras_index" id="container_letras_index">
+ 
+</section>
+<!-- imagenes redondas con artistas recomendados y sus nombres -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+<section id="container_last_update">
 
-</html>
+</section>
+<!-- una foto al final bonita o una api de noticias -->
+<section id="final_index">
+    <h2 class="text-center my-4">Sección noticias</h2>
+    <div class="card-group">
+
+    </div>
+</section>
+    
+<script src="js/scriptindex.js"></script>
+<?php
+include_once 'vista/vista_Footer.php';
