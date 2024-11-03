@@ -12,7 +12,15 @@
 }
 
 body {
+<<<<<<< HEAD
     width: 100%;
+=======
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+
+    max-width: 100vw;
+>>>>>>> a3f6ec65c21de7b129897b9dc4acd58b69242bd2
     background: var(--backgroundgeneral);
     font-family: "Chau Philomene One", 'Bebas Neue', serif;
 }
@@ -21,11 +29,15 @@ body {
 .navbar{
     background: var(--backgroundNav);
 }
+<<<<<<< HEAD
 .navbar img{
     padding: 1px;
     width: 100%;
     height: 10vh;
 }
+=======
+
+>>>>>>> a3f6ec65c21de7b129897b9dc4acd58b69242bd2
 
 /*login */
 

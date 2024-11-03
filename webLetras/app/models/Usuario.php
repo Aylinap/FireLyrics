@@ -57,18 +57,7 @@ class Usuario {
         $stmt->execute();
                 
         return $stmt->fetch(PDO::FETCH_OBJ);
-    }
-
-    public function register($password) {        
-        $stmt = Database::getConnection()->prepare("INSERT INTO usuarios (name, username, email, password, role) VALUES (:name, :username, :email, :password, :role)");
-        $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':username', $this->username);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':role', $this->role);
-
-        return $stmt->execute();
-    }    
+    } 
 
     /**
      * Obtiene un usuario por su ID
