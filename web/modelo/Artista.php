@@ -3,15 +3,21 @@ include_once 'DatabaseConnection.php';
 
 class Artista
 {
-    private $nombre;
+    
     private $id;
+    private $nombre;
     private $url_img;
-    //private $id_api?
-
-    public function __construct()
+    private $IDMB;
+    
+    public function __construct($id = 0, $nombre = '', $IDMB = '',$url_img = '')
     {
-      
+        $this->id = $id;
+        $this->nombre = $nombre;
+        $this->IDMB = $IDMB;
+        $this->url_img =$url_img;
     }
+
+
     public function getNombre()
     {
         return $this->nombre;
@@ -20,6 +26,11 @@ class Artista
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getIDMB()
+    {
+        return $this->IDMB;
     }
 
     public function getUrlImg()
@@ -42,6 +53,11 @@ class Artista
         $this->url_img = $url_img;
     }
 
+    public function setIDMB($IDMB): void
+    {
+        $this->IDMB = $IDMB;
+    }
+
     // crud
     function getAllArtist()
     {
@@ -52,6 +68,7 @@ class Artista
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //
     public function getUltimasLetrasSubidas($limite = 10) {
         $conn = Database::getConnection();
         $sqlquery =  'SELECT clu.*, ac.Id_artista, c.Titulo AS cancion_nombre, a.nombre AS artista_nombre, c.link_youtube, ac.Album
