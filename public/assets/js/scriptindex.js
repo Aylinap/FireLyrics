@@ -1,10 +1,7 @@
 /*Cosas que falta implementar, borrar luego:
 1. Boton de añadir cancion a playlist 
 2. que las imagenes sean random tomadas de la bbdd para darle algo de dinamismo (listo) hecho en la consulta sql
-3. link funcionales del footer
-4. esta re fea la pagina xD
-5. el img-fluid en las imagenes redondas no funciona
-6. falta el slice para el grid. */
+*/
 
 async function fetchArtistaID() {
     try {

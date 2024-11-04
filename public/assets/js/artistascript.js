@@ -1,35 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+ // Obtener el ID del artista desde la URL
+            // const urlParams = new URLSearchParams(window.location.search);
+            // const artistId = urlParams.get('id');
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artista</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+            // if (!artistId) {
+            //     alert("No se proporciono un ID de artista en la URL.");
+            //     return;
+            // }
 
-<body>
-    <div class="container" style="max-width: 80%; margin: auto;">
-        <div class="row my-4 p-4 border rounded" style="width: 100%;">
-            <div class="col-md-4">
-                <img id="artist-photo" src="webLetras/public/img/logofondonegro.png" alt="Foto del Artista" class="img-fluid rounded">
-            </div>
-            <div class="col-md-8">
-                <h1 id="artist-name">Nombre del Artista</h1>
-                <ul id="artist-info" class="list-unstyled"></ul>
-            </div>
-        </div>
-
-        <div class="row my-4">
-            <div class="col">
-                <h2>Lista de Canciones</h2>
-                <ul id="song-list" class="list-group"></ul>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function getArtistaID() {
+function getArtistaID() {
     const artistId = "13655113-cd16-4b43-9dca-cadbbf26ee05";
     
     // con tags
@@ -60,9 +38,11 @@ function renderArtista(data) {
     countryItem.textContent = "País: " + (data.area ? data.area.name : "No disponible");
     artistInfoList.appendChild(countryItem);
 
+    // Géneros
     const genreItem = document.createElement("li");
     genreItem.textContent = "Género: ";
 
+    // Filtrando y mostrando los géneros si están disponibles
     const genres = data.tags ? data.tags.map(tag => tag.name).join(", ") : "No disponible";
     genreItem.textContent += genres;
     artistInfoList.appendChild(genreItem);
@@ -101,7 +81,9 @@ function renderArtista(data) {
 document.addEventListener("DOMContentLoaded", function() {
     getArtistaID();
 });
-    </script>
-</body>
 
-</html>
+
+
+
+
+
